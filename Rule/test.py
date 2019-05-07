@@ -102,11 +102,11 @@ class TestStringMethods(unittest.TestCase):
 
     def test_contains_t(self):
         rule = build_rule("adjectives contains word", verbose=False)
-        self.assertEqual(rule.evaluate_top_level("NiC", verbose=False), True)
+        self.assertEqual(rule.evaluate_top_level("nice the hello", verbose=False), True)
 
     def test_contains_f(self):
         rule = build_rule("adjectives contains word", verbose=False)
-        self.assertEqual(rule.evaluate_top_level("asdfghjkl", verbose=False), False)
+        self.assertEqual(rule.evaluate_top_level("the hello", verbose=False), False)
 
     def test_case_subset_t(self):
         rule = build_rule("word is case sensitive subset of dictionary", verbose=False)
@@ -193,7 +193,7 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(rule.evaluate_top_level("the quick brown fox", verbose=False), True)
 
     def test_union_set_t(self):
-        rule = build_rule("({'The', 'the'} union {'The'}) == {'The', 'the'}", verbose=False)
+        rule = build_rule("({'The', 'the'} union {'The'}) == {'The', 'the', 'The'}", verbose=False)
         self.assertEqual(rule.evaluate_top_level("the quick brown fox", verbose=False), True)
 
     def test_minus_set_t(self):
@@ -251,8 +251,8 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(rule.evaluate_top_level("abc abc ab", verbose=False), False)
 
     def test_7(self):
-        rule = build_rule("((every 2nd word) s1)[s1 contains vowel] == (length of (every 2nd word))", verbose=True)
-        self.assertEqual(rule.evaluate_top_level("b a b a", verbose=True), True)
+        rule = build_rule("((every 2nd word) s1)[s1 contains vowel] == (length of (every 2nd word))", verbose=False)
+        self.assertEqual(rule.evaluate_top_level("b a b a", verbose=False), True)
 
     def test_8(self):
         rule = build_rule("(word s1)[(word s2, opposite l1)[(s2 == l1) and ((sum of s1) == (sum of s2))] == (length of word)] == (length of word)", verbose=False)

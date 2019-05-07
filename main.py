@@ -50,7 +50,7 @@ async def set_rule(context, *, new_rule:str): # the * makes new_rule be all the 
         if setting_with_key:
             await context.send("Rule set by " + context.message.author.mention + " using key: \"" + new_rule + "\"")
         else:
-            await context.send("Rule set by " + context.message.author.mention + " as: \"" + new_rule + "\"")
+            await context.send("Rule set by " + context.message.author.mention + " as: `" + new_rule + "`")
 
     except Exception as e:
         to_send = "A problem occurred while parsing the rule. Here is the error:\n" + str(e)

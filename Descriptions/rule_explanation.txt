@@ -1,4 +1,23 @@
 
+Newline character for formatting (between the --): -	󠀠
+-
+
+Text-Zendo is a game about guessing a rule. One person thinks of a rule, then people try to figure it out by guessing and reverse-engineering it based on what fits it. Guesses can be any series of letters and numbers, with spaces separating words.
+When someone makes a rule, they then provide some examples. Here's an example game:
+`Person 1`: I have a rule
+`Person 1`: `the the the` fits the rule
+`Person 1`: `the a the` does not fit the rule
+
+`Person 2`: Does `a a a` fit the rule?
+`Person 1`: Yes
+`Person 3`: Does `b a a` fit the rule?
+`Person 1`: No
+`Person 2`: Is the rule that all words in the guess have to be the same?
+`Person 1`: Yes
+
+I've set up a discord bot which can automate the process of checking people's guesses against the rule.
+The discord bot can only interpret rules a very specific way, so here's a description of how to format rules:
+
 A Rule is the way that the Discord bot can know whether someone else's guess is correct.
 Rules work a bit like math. (a + b) * c is a valid math statement. Similarly, rules use parentheses and operations to reach an end result
 Rules can use Sets, Numbers, and Boolean (True/False) conditions
@@ -12,17 +31,16 @@ In this case, "Matthew" is not in the dictionary, so our guess does not fit the 
 
 A more formal look at rule creation:
 The formal definition of all the rules is in the definitions channel
-The contents of 
+The contents of
 Every rule takes some type of value, and returns some type of value
-The return value in the outermost rule will usually be a boolean. If it's not: Numbers other than 0 -> True, 0 -> False, and Sets which are not empty -> True, empty sets -> False
+The return value in the outermost rule should usually be a boolean. If it's not: Numbers other than 0 -> True, 0 -> False, and Sets which are not empty -> True, empty sets -> False
 To check whether a rule can go somewhere, check whether its output type matches the input type
 Make sure to put parentheses around all rules except your outermost one, and put spaces precisely as described
 
 What if we want to make a more complicated rule?
 Let's make a rule "Every second word must contain a vowel".
 First, we get every second word in the guess, by using a Set operation `every 2nd word`
-We need to check for each word, so we'll use `(<Set> s#, <Location> l#)[Condition]`. This is a powerful operation which goes through the <Set>, using s# as
-each element in turn, with l# relative to s#. It then gives us the number of times the condition was met.
+We need to check for each word, so we'll use `(<Set> s#, <Location> l#)[Condition]`. This is a powerful operation which goes through the <Set>, using s# as each element in turn, with l# relative to s#. It then gives us the number of times the condition was met.
 s# and l# are how we decide to refer to the nth element and relative location, eg. (<Set> s1, <Location> l1)[some condition with s1 and l1]
 To set up the part inside parentheses:
     We will put `(every 2nd word)` as the <Set>.
@@ -33,6 +51,7 @@ the condition is that the word has a vowel, which will look like `s1 contains vo
 Putting it together: `((every 2nd word) s1)[s1 contains vowel]`. We now need a boolean value, by checking if the number of matches equals the number of words we're checking.
 Adding this together: `((every 2nd word) s1)[s1 contains vowel] == (length of (every 2nd word))`
 
+A quick note about using (Set s#, <Location> l#)[<Condition>]: The maximum value, which is what it returns if the condition is met every time, will be one less when using Locations next and previous. This is because it can't check the last value when using Next, or the first value when using Previous, else there would be no location to compare to. Because of this, be sure to check against ((length of word) - 1) or less when using either of these <Location>s
 
 
 Some additional notes on rules, for those who know coding, especially Python:

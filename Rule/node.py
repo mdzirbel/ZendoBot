@@ -232,11 +232,8 @@ class Node:
             elif self.key == "case_contains":
 
                 for element in parameters[0]:
-                    for start in range(len(element)):
-                        for end in range(len(element)+1):
-                            if end>start:
-                                if element[start:end] in parameters[1]:
-                                    return True
+                    if element in parameters[1]:
+                        return True
 
                 return False
 
@@ -246,11 +243,8 @@ class Node:
                 lowercase_param_1 = [element.lower() for element in parameters[1]]
 
                 for element in lowercase_param_0:
-                    for start in range(len(element)):
-                        for end in range(len(element)+1):
-                            if end > start:
-                                if element[start:end] in lowercase_param_1:
-                                    return True
+                    if element in lowercase_param_1:
+                        return True
 
                 return False
 
@@ -413,7 +407,7 @@ class Node:
 
             elif self.key == "union_set":
 
-                return list(dict.fromkeys(parameters[0] + parameters[1]))
+                return parameters[0] + parameters[1]
 
             elif self.key == "minus":
 

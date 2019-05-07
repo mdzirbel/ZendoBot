@@ -67,4 +67,3 @@ given_sets = {
 	"Vowel": get_vowels(),
 	"Consonant": get_consonants(),
 }
-

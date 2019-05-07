@@ -59,7 +59,7 @@ Output    |  How to use                                |  Description
 <Number>  |  location of <Set1> in <Set2>              |  Finds the index of the first element of Set1 which it shares with Set2, or -1 if it's not inside
 <Number>  |  case sensitive location of <Set1> in <Set2>
 <Set>     |  <Set1> intersect <Set2>                   |  <Set1> n <Set2> (case sensitive)
-<Set>     |  <Set1> union <Set2>                       |  <Set1> U <Set2> (case sensitive)
+<Set>     |  <Set1> union <Set2>                       |  <Set1> U <Set2> Repeats are added a second time (case sensitive)
 <Set>     |  <Set1> - <Set2>                           |  <Set1> \ <Set2>
 <Number>  |  <Number1> - <Number2>
 <Number>  |  <Number> + <Number>
@@ -85,10 +85,10 @@ Number:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ```
-Level: Alias for <Set> of
-Sentence  |  Set of one element which is the entire guess  |  "The quick brown" -> {"The quick brown"}
-Word      |  Every word in sentence                        |  "The quick brown" -> {"The", "quick", "brown"}
-Letter    |  Every letter in sentence                      |  "The quick brown" -> {'T', 'h', 'e', 'q', 'u' ...}
+Level:
+Sentence  |  The entire sentence       |  "The quick brown" -> {"The quick brown"}
+Word      |  Every word in sentence    |  "The quick brown" -> {"The", "quick", "brown"}
+Letter    |  Every letter in sentence  |  "The quick brown" -> {'T', 'h', 'e', 'q', 'u' ...}
 Words     |  Same as Word, and can be used interchangeably
 Letters   |  Same as Letter, and can be used interchangeably
 ```

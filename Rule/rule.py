@@ -33,7 +33,7 @@ and            |  <Condition> and <Condition>
 or             |  <Condition> or <Condition>
 not            |  not <Condition>
 case_contains  |  <Set1> contains <Set2> case sensitive
-contains       |  <Set1> contains <Set2>                 |  Whether any element of <Set2> can be found anywhere in <Set1> eg. {'hello'} contains {'hell'} -> True
+contains       |  <Set1> contains <Set2>                 |  Whether any element of <Set2> can be found in <Set1>
 case_subset    |  <Set1> is case sensitive subset of <Set2>
 subset         |  <Set1> is subset of <Set2>             |  <Set1> is subset of <Set2> eg. ["dog", "cat", "llama"] is subset of animals -> True
 is_lowercase   |  <Set> is lowercase                     |  Checks whether everything in <Set> is lowercase. Ignores numbers
@@ -47,7 +47,7 @@ sum            |  <Number>  |  sum of <Set>                              |  Sum 
 case_location_of  <Number>  |  case sensitive location of <Set1> in <Set2>
 location_of    |  <Number>  |  location of <Set1> in <Set2>              |  Finds the index of the first element of Set1 which it shares with Set2 or -1
 intersect_set  |  <Set>     |  <Set1> intersect <Set2>                   |  <Set1> n <Set2> (case sensitive)
-union_set      |  <Set>     |  <Set1> union <Set2>                       |  <Set1> U <Set2> (case sensitive)
+union_set      |  <Set>     |  <Set1> union <Set2>                       |  <Set1> U <Set2> Repeats are added a second time (case sensitive)
 minus          |  <???>     |  <Set1> - <Set2> or <Number1> - <Number2>  |  <Set1> \ <Set2> or <Number1> - <Number2>
 plus           |  <Number>  |  <Number> + <Number>
 mod            |  <Number>  |  <Number1> mod <Number2>                   |  <Number1> % <Number2>
