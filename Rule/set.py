@@ -34,9 +34,6 @@ def get_countries():
 def get_states():
 	return get_file("Sets/states.txt")
 
-def get_swear_words():
-	return get_file("Sets/swear_words.txt")
-
 def get_heathrows():
 	return get_file("Sets/heathrows.txt")
 
@@ -63,7 +60,6 @@ given_sets = {
 	"Adjectives": get_adjectives(),
 	"Countries": get_countries(),
 	"States": get_states(),
-	"Swear Words": get_swear_words(),
 	"Heathrows": get_heathrows(),
 	"Python Reserved Words": get_python_reserved(),
 	"Uppercase": get_uppercase(),

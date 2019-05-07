@@ -11,7 +11,6 @@ Verbs
 Adjectives
 Countries
 States
-Swear Words
 Heathrows
 Python Reserved Words
 Uppercase
