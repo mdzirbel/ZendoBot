@@ -1,0 +1,39 @@
+
+A Rule is the way that the Discord bot can know whether someone else's guess is correct.
+Rules work a bit like math. (a + b) * c is a valid math statement. Similarly, rules use parentheses and operations to reach an end result
+Rules can use Sets, Numbers, and Boolean (True/False) conditions
+
+Let's look at a basic rule: `word is subset of dictionary`
+There are three elements to this rule: "word", "is subset of", and "dictionary".
+`word` is the list of words that are in the guess. If someone guessed "Hello My Name Is Matthew", `word` would be the set: ["Hello", "My", "Name", "Is", "Matthew"]
+`dictionary` is the entire list of words, ["a", "aa", "aaa", "aachen", "aardvark" ...]
+`<Set1> is subset of <Set2>` is a rule. It returns True if everything in <Set1> is also in <Set2>.
+In this case, "Matthew" is not in the dictionary, so our guess does not fit the rule
+
+A more formal look at rule creation:
+The formal definition of all the rules is in the definitions channel
+The contents of 
+Every rule takes some type of value, and returns some type of value
+The return value in the outermost rule will usually be a boolean. If it's not: Numbers other than 0 -> True, 0 -> False, and Sets which are not empty -> True, empty sets -> False
+To check whether a rule can go somewhere, check whether its output type matches the input type
+Make sure to put parentheses around all rules except your outermost one, and put spaces precisely as described
+
+What if we want to make a more complicated rule?
+Let's make a rule "Every second word must contain a vowel".
+First, we get every second word in the guess, by using a Set operation `every 2nd word`
+We need to check for each word, so we'll use `(<Set> s#, <Location> l#)[Condition]`. This is a powerful operation which goes through the <Set>, using s# as
+each element in turn, with l# relative to s#. It then gives us the number of times the condition was met.
+s# and l# are how we decide to refer to the nth element and relative location, eg. (<Set> s1, <Location> l1)[some condition with s1 and l1]
+To set up the part inside parentheses:
+    We will put `(every 2nd word)` as the <Set>.
+    We can decide to reference the element as s1
+    We're not using the relative location, so we can just skip it
+So now we have `((every 2nd word) s1)[Some Condition]`
+the condition is that the word has a vowel, which will look like `s1 contains vowel`
+Putting it together: `((every 2nd word) s1)[s1 contains vowel]`. We now need a boolean value, by checking if the number of matches equals the number of words we're checking.
+Adding this together: `((every 2nd word) s1)[s1 contains vowel] == (length of (every 2nd word))`
+
+
+
+Some additional notes on rules, for those who know coding, especially Python:
+Sets are represented by lists

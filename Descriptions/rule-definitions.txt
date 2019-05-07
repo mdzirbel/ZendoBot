@@ -1,0 +1,107 @@
+
+A quick reference of the formal rule definitions for people with a general understanding of the rules. Refer to the explanation channel for a real explanation
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+```
+Set:
+Dictionary
+Animals
+Nouns
+Verbs
+Adjectives
+Countries
+States
+Swear Words
+Heathrows
+Python Reserved Words
+Uppercase
+Lowercase
+Vowel
+Consonant
+
+User defined set = {"element_1", "element_2" ...}
+```
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+```
+Conditions:
+True
+False
+<Set> is palindrome                   |  Whether every element in <Set> is a palindrome
+<Number> == <Number>
+<Set> == <Set>
+<Number> >= <Number>
+<Number> <= <Number>
+<Number> > <Number>
+<Number> < <Number>
+<Condition> and <Condition>
+<Condition> or <Condition>
+not <Condition>
+<Set1> contains <Set2>                 |  Whether any element of <Set2> can be found anywhere in <Set1> eg. {'hello'} contains {'hell'} -> True
+<Set1> contains <Set2> case sensitive
+<Set1> is subset of <Set2>             |  <Set1> is subset of <Set2> eg. ["dog", "cat", "llama"] is subset of animals -> True
+<Set1> is case sensitive subset of <Set2>
+<Set> is lowercase                     |  Checks whether everything in <Set> is lowercase. Ignores numbers
+<Set> is uppercase                     |  Checks whether everything in <Set> is uppercase. Ignores numbers
+```
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+```
+Operations:
+Output    |  How to use                                |  Description
+<Set>     |  every (n)th <Set>                         |  eg. every 2nd word - ["the", "quick", "brown", "fox"] -> ["quick", "fox"]
+<Set>     |  (n)th <Set>                               |  <Set>[n]
+<Number>  |  length of <Set>                           |  Length of set. length of sentence -> 1, length of words -> number of words
+<Number>  |  sum of <Set>                              |  Sum of letters in set, a=A=1, b=B=2, 1=1, 2=2
+<Number>  |  location of <Set1> in <Set2>              |  Finds the index of the first element of Set1 which it shares with Set2, or -1 if it's not inside
+<Number>  |  case sensitive location of <Set1> in <Set2>
+<Set>     |  <Set1> intersect <Set2>                   |  <Set1> n <Set2> (case sensitive)
+<Set>     |  <Set1> union <Set2>                       |  <Set1> U <Set2> (case sensitive)
+<Set>     |  <Set1> - <Set2>                           |  <Set1> \ <Set2>
+<Number>  |  <Number1> - <Number2>
+<Number>  |  <Number> + <Number>
+<Number>  |  <Number1> mod <Number2>                   |  <Number1> % <Number2>
+<Number>  |  (<Set> s#, <Location> l#)[Condition]      |  Checks condition for any s and related l, eg. (word s1, next l1)[(sum of s1) > (sum of l1)]
+<Number>  |  (<Set> s#)[Condition]                     |  Checks condition for any s, eg. (word s1)[s1 is palindrome]
+<Set>     |  lowercase of <Set>                        |  Makes <Set> lowercase
+<Set>     |  uppercase of <Set>                        |  Makes <Set> uppercase
+```
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+```
+Number:
+...
+-1
+0
+1
+2
+...
+```
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+```
+Level: Alias for <Set> of
+Sentence  |  Set of one element which is the entire guess  |  "The quick brown" -> {"The quick brown"}
+Word      |  Every word in sentence                        |  "The quick brown" -> {"The", "quick", "brown"}
+Letter    |  Every letter in sentence                      |  "The quick brown" -> {'T', 'h', 'e', 'q', 'u' ...}
+Words     |  Same as Word, and can be used interchangeably
+Letters   |  Same as Letter, and can be used interchangeably
+```
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+```
+Location:
+Next
+Previous
+Last
+First
+Opposite
+```
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
