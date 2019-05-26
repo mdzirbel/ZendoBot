@@ -327,6 +327,17 @@ def build_min_rule(min_rule, subrules, verbose=True):
 
         min_rule_node = Node("nth", "operation", [n, set1])
 
+    # checks for letter of because initial parsing changes letters -> letter
+    elif "letter of " in min_rule: # letters_of
+
+        condition_index = min_rule.find("letter of")
+
+        set1 = min_rule[condition_index + len("letter of"): len(min_rule) + 1].strip()
+
+        if verbose: print("set1 -" + set1 + "-")
+
+        min_rule_node = Node("letters_of", "operation", [set1])
+
     elif "length of " in min_rule: # length
 
         condition_index = min_rule.find("length of")

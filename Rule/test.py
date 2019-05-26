@@ -140,6 +140,8 @@ class TestStringMethods(unittest.TestCase):
         rule = build_rule("sentence is uppercase", verbose=False)
         self.assertEqual(rule.evaluate_top_level("HELLo", verbose=False), False)
 
+###################################  Operations  ###################################
+
     def test_every_nth_t(self):
         rule = build_rule("(every 2nd word) == {'quick', 'fox'}", verbose=False)
         self.assertEqual(rule.evaluate_top_level("the quick brown fox", verbose=False), True)
@@ -155,6 +157,10 @@ class TestStringMethods(unittest.TestCase):
     def test_nth_f(self):
         rule = build_rule("(2nd word) == {'the', 'quick', 'brown', 'fox'}", verbose=False)
         self.assertEqual(rule.evaluate_top_level("the quick brown fox", verbose=False), False)
+
+    def test_letters_of_t(self):
+        rule = build_rule("(letters of word) == {'t', 'h', 'e'}", verbose=False)
+        self.assertEqual(rule.evaluate_top_level("the", verbose=False), True)
 
     def test_length_t(self):
         rule = build_rule("(length of word) == 4", verbose=False)

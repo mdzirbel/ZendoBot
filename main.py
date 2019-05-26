@@ -2,12 +2,16 @@
 
 # Docs: https://discordpy.readthedocs.io/en/latest/api.html
 
-# TODO make overview command
+# TODO make 'buffer' from which you can simply enqueue a rule to be used later
+# TODO check if a rule is valid/score it for how good it is
+# TODO generate random rule
+# TODO set better error messages for rule creation
 
-import string, random, copy, discord
+import string, random, discord
 from Saving import saving, logs
 from discord.ext.commands import Bot
 from Rule.rule import *
+from Rule.set import given_sets
 
 RANDOM_KEY_LENGTH = 10
 
@@ -40,6 +44,8 @@ async def set_rule(context, *, new_rule:str): # the * makes new_rule be all the 
             new_rule_to_add = new_rule
             setting_with_key = False
 
+        new_rule_to_add = new_rule_to_add.strip()
+
         logs.log("Setting new rule " + new_rule_to_add + " in channel " + current_channel_id + " " + context.channel.name + " for " + str(context.message.author))
 
         current_rules[current_channel_id] = build_rule(new_rule_to_add, verbose=False)
@@ -57,8 +63,8 @@ async def set_rule(context, *, new_rule:str): # the * makes new_rule be all the 
         await context.send(to_send)
 
 @bot.command(name='makekey',
-                description="Gives a random key which can be used to set the rule",
-                brief="Gives a random key which can be used to set the rule",
+                description="Takes a rule and gives a key which can be used to set it as the rule",
+                brief="Takes a rule and gives a key which can be used to set it as the rule",
                 aliases=['key', 'getkey', 'get_key'],
                 pass_context=True)
 async def make_key(context, *, new_rule:str): # the * makes new_rule be all the following text, not just until the next space
@@ -121,7 +127,7 @@ async def check_guess(context, *, guess:str): # the * makes new_rule be all the 
 @bot.command(name='overview',
              description="Gives results for all already tried guesses",
              brief="Gives results for all already tried guesses",
-             aliases=['past', 'o', 'past-guesses', 'pastguesses', 'history'],
+             aliases=['past', 'o', '0', 'past-guesses', 'pastguesses', 'history'],
              pass_context=True)
 async def get_overview(context):  # the * makes new_rule be all the following text, not just until the next space
 
@@ -197,6 +203,39 @@ async def get_rule(context):  # the * makes new_rule be all the following text, 
 
     else:
         await context.send("Nice try")
+
+@bot.command(name='Is',
+             description="Tells you if the word is in the set. Will also let you know if the word exists with different capitalization",
+             brief="Tells you if the word is in the set",
+             aliases=['is'],
+             pass_context=True)
+async def is_in(context, *, params:str):
+
+    params = params.split()
+
+    set_to_search_name = " ".join(params[2:]).lower().capitalize()
+
+    if len(params) < 3 or params[1].lower() != "in":
+        await context.send("Incorrect formatting. Is In should be formatted `is ____ in <Set>`, eg. `is hello in dictionary`")
+
+    elif not set_to_search_name in given_sets:
+        await context.send("Set " + set_to_search_name + " not found")
+
+    else:
+
+        thing_to_find = params[0]
+        set_to_search = given_sets[set_to_search_name]
+
+        if thing_to_find in set_to_search:
+            await context.send(thing_to_find + " is in " + set_to_search_name)
+
+        elif thing_to_find.lower() in [x.lower() for x in set_to_search]:
+            index_of_thing = [x.lower() for x in set_to_search].index(thing_to_find.lower())
+            await context.send(thing_to_find + " is not in " + set_to_search_name + " but " + set_to_search[index_of_thing] + " is.")
+
+        else:
+            await context.send(thing_to_find + " is not in " + set_to_search_name)
+
 
 @bot.event
 async def on_member_join(member):

@@ -42,6 +42,7 @@ is_uppercase   |  <Set> is uppercase                     |  Checks whether every
 Operations:
 every_nth      |  <Set>     |  every (n)th <Set>                         |  eg. every 2nd word - ["the", "quick", "brown", "fox"] -> ["quick", "fox"]
 nth            |  <Set>     |  (n)th <Set>                               |  <Set>[n]
+!letters_of     |  <Set>     |  letters of <Set>                          |  ["the", "he"] -> ["t", "h", "e", "h"...]
 length         |  <Number>  |  length of <Set>                           |  Length of set. length of sentence -> 1, length of words -> number of words
 sum            |  <Number>  |  sum of <Set>                              |  Sum of letters in set, a=A=1, b=B=2, 1=1, 2=2
 case_location_of  <Number>  |  case sensitive location of <Set1> in <Set2>
@@ -52,8 +53,8 @@ minus          |  <???>     |  <Set1> - <Set2> or <Number1> - <Number2>  |  <Set
 plus           |  <Number>  |  <Number> + <Number>
 mod            |  <Number>  |  <Number1> mod <Number2>                   |  <Number1> % <Number2>
 number_of      |  <Number>  |  (<Set> s#, <Location> l#)[Condition]      |  Checks condition for any s and related l eg. (word s1, next l1)[(sum of s1) > (sum of l1)]
-!lowercase      |  <Set>     |  lowercase of <Set>                        |  Makes <Set> lowercase
-!uppercase      |  <Set>     |  uppercase of <Set>                        |  Makes <Set> uppercase
+lowercase      |  <Set>     |  lowercase of <Set>                        |  Makes <Set> lowercase
+uppercase      |  <Set>     |  uppercase of <Set>                        |  Makes <Set> uppercase
 
 Identity:
 identity       |  Rule      |  Same rule, allows for extra parentheses
@@ -96,7 +97,7 @@ def build_rule(rule_string: str, verbose=False):
     sets = []
 
     # Put user sets into their own list, make lowercase, then remove ordinals
-    rule_string = format_rule(rule_string, sets)
+    rule_string = format_rule(rule_string, sets, verbose=verbose)
 
     if verbose: print("pre:", rule_string, subrules, sets)
 

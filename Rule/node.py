@@ -295,6 +295,16 @@ class Node:
                 else:
                     return [""]
 
+            elif self.key == "letters_of":
+
+                letters = []
+
+                for i, word in enumerate(parameters[0]):
+                    for j, letter in enumerate(word):
+                        letters.append(letter)
+
+                return letters
+
             elif self.key == "length":
 
                 return len(parameters[0])

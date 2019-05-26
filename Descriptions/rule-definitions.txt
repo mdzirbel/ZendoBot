@@ -20,6 +20,8 @@ Lowercase
 Vowel
 Consonant
 
+Find the contents of sets at: https://github.com/mdzirbel/ZendoBot/tree/master/Sets
+
 User defined set = {"element_1", "element_2" ...}
 ```
 
